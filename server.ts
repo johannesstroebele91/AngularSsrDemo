@@ -21,6 +21,7 @@ export function app(): express.Express {
   server.set('views', browserDistFolder);
 
   server.get('/api/secret', (req, res) => {
+    console.log('/api/secret')
     // Fetch the secret from wherever it's stored
     const secret = process.env['SECRET']; // Or fetch it from a database, file, etc.
 
@@ -30,8 +31,9 @@ export function app(): express.Express {
 
 
   // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
+  server.get('/api/**', (req, res) => {
+    console.log('/api/**')
+  });
   server.get('*.*', express.static(browserDistFolder, {
     maxAge: '1y'
   }));
