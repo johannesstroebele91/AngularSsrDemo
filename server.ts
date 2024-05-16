@@ -20,7 +20,7 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
-  server.get('/api/secret', (req, res) => {
+  /* TODO fix later server.get('/api/secret', (req, res) => {
     console.log('/api/secret')
     // Fetch the secret from wherever it's stored
     const secret = process.env['SECRET']; // Or fetch it from a database, file, etc.
@@ -28,12 +28,11 @@ export function app(): express.Express {
     // Return the secret as JSON
     res.json({ secret });
   });
-
+*/
 
   // Example Express Rest API endpoints
-  server.get('/api/**', (req, res) => {
-    console.log('/api/**')
-  });
+  server.get('/api/**', (req, res) => { res.send('Hello!') });
+
   server.get('*.*', express.static(browserDistFolder, {
     maxAge: '1y'
   }));
