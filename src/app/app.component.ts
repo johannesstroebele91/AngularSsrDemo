@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../environments/environment"
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,6 @@ export class AppComponent {
   constructor(private http: HttpClient) { }
 
   getSecret() {
-    console.log(this.http.get<{ secret: string }>('http://localhost:4000/api/secret').subscribe({next: (data) => console.log(data)}))
+    console.log(this.http.get<{ secret: string }>(environment.endpoint +'api/secret').subscribe({next: (data) => console.log(data)}))
   }
 }
